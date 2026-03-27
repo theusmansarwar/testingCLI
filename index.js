@@ -21,6 +21,7 @@ const allowedOrigins = [
   "https://ztesting.site",
   "https://limo.ztesting.site",
   "https://limo.ztesting.site/",
+  
 ];
 
 // ✅ Apply CORS Middleware Before Routes

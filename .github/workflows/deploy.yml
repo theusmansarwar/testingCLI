@@ -21,6 +21,7 @@ jobs:
           key: ${{ secrets.AUTO_DEPLOY_KEY }}    # Private key you added as secret
           port: 22
           script: |
+            source ~/.profile
             cd /var/www/auto.nostapay.com
             git reset --hard
             git pull origin main

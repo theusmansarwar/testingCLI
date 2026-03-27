@@ -16,9 +16,10 @@ jobs:
       - name: SSH into VPS and deploy
         uses: appleboy/ssh-action@master
         with:
-          host: srv793288.hstgr.cloud
+          host: ${{ secrets.SERVER_IP }}          # VPS IP
           username: root
-          key: Usmanali@326
+          key: ${{ secrets.AUTO_DEPLOY_KEY }}    # Private key you added as secret
+          port: 22
           script: |
             cd /var/www/auto.nostapay.com
             git reset --hard

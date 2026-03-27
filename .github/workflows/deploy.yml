@@ -21,9 +21,12 @@ jobs:
           key: ${{ secrets.AUTO_DEPLOY_KEY }}    # Private key you added as secret
           port: 22
           script: |
-            source ~/.profile
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # load nvm
+            export PATH="$NVM_DIR/versions/node/v24.11.1/bin:$PATH"
+
             cd /var/www/auto.nostapay.com
             git reset --hard
             git pull origin main
-            /root/.nvm/versions/node/v24.11.1/bin/npm install
-            /root/.nvm/versions/node/v24.11.1/bin/pm2 restart auto-backend
+            npm install
+            pm2 restart auto-backend --interpreter $NVM_DIR/versions/node/v24.11.1/bin/node

@@ -25,5 +25,5 @@ jobs:
             cd /var/www/auto.nostapay.com
             git reset --hard
             git pull origin main
-            npm install
-            pm2 restart auto-backend
+            /root/.nvm/versions/node/v24.11.1/bin/npm install
+            /root/.nvm/versions/node/v24.11.1/bin/pm2 restart auto-backend

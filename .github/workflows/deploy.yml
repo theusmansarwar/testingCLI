@@ -1,0 +1,27 @@
+name: Auto Deploy Backend
+
+on:
+  push:
+    branches:
+      - main  # deploys whenever you push to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH into VPS and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: srv793288.hstgr.cloud
+          username: root
+          key: Usmanali@326
+          script: |
+            cd /var/www/auto.nostapay.com
+            git reset --hard
+            git pull origin main
+            npm install
+            pm2 restart auto-backend
